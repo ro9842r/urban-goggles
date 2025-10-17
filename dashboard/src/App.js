@@ -3,7 +3,7 @@ import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback } from 'react';
 import { debounce } from 'lodash';
-import { fetchError, fetchStart, setText } from './store';
+import { fetchError, fetchStart, fetchSuccess, setText } from './store';
 import { mockSentimentAPI } from './api';
 import { Box, CircularProgress, Container, Paper, TextField, Typography } from '@mui/material';
 
@@ -18,7 +18,7 @@ function App() {
 
       try {
         const data = await mockSentimentAPI(input);
-        dispatch(fetchStart(data))
+        dispatch(fetchSuccess(data))
       }catch(err){
         dispatch(fetchError(err.message))
       }
@@ -52,7 +52,7 @@ function App() {
           {result && (
             <Typography>
               Sentiment: <strong>{result.label}</strong>(confidence: {
-                result.probability
+                result.probabilil
               })
             </Typography>
           )}
